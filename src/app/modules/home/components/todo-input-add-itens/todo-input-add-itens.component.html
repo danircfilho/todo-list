@@ -1,1 +1,6 @@
-<input type="text" placeholder="Digite a sua nova Tarefa aqui!">
+<input 
+  type="text" 
+  placeholder="Digite a sua nova Tarefa aqui!" 
+  [(ngModel)]="adicionarItemLista"
+  (keyup.enter)="submeterItemLista()"  
+>

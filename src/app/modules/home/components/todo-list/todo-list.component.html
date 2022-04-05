@@ -1,22 +1,26 @@
-<section>
-  <ul>
-    <li>
-      <input type="checkbox">
-      <input type="text">
-      <button>
-        <img src="assets/icons/icon-trash.svg" alt="icon-trash">
-      </button>
-    </li>
+<section [ngClass]="{'loading': !listaTarefa.length}">
 
-    <li>
-      <input type="checkbox">
-      <input type="text" class="checked">
-      <button>
+  <ul *ngIf="listaTarefa.length">
+    <li *ngFor="let item of listaTarefa; let i = index">
+      <input type="checkbox" [(ngModel)]="item.checked">
+      <input 
+        type="text" 
+        [(ngModel)]="item.lista"
+        [ngClass]="{'checked': item.checked}"
+        (keyup)="validarEntradaLista(item.lista , i)"
+      >
+
+      <button (click)="apagaItemLista(i)">
         <img src="assets/icons/icon-trash.svg" alt="icon-trash">
       </button>
     </li>
   </ul>
 
 </section>
-<app-todo-input-add-itens></app-todo-input-add-itens>
-<app-todo-button-delete-all></app-todo-button-delete-all> 
+<app-todo-input-add-itens (emitListaTarefa)="setarEmitLista($event)"></app-todo-input-add-itens>
+
+<app-todo-button-delete-all 
+  *ngIf="listaTarefa.length"
+  (click)="apagaTudoLista()"
+>
+</app-todo-button-delete-all> 
