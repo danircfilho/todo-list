@@ -8,15 +8,12 @@ import { ListaTarefa } from "../../model/lista-tarefa";
   styleUrls: ["./todo-list.component.scss"],
 })
 export class TodoListComponent implements DoCheck {
-  public listaTarefa: Array<ListaTarefa> = [];
+  public listaTarefa: Array<ListaTarefa> = JSON.parse(localStorage.getItem("lista") || '[]');
 
   constructor() {}
 
   ngDoCheck(): void {
-    /* valores checados fmudarão para parte de baixo da lista */
-    this.listaTarefa.sort(
-      (first, last) => Number(first.checked) - Number(last.checked)
-    );
+    this.setLocalStorage();
   }
 
   public apagaItemLista(event: number) {
@@ -42,6 +39,15 @@ export class TodoListComponent implements DoCheck {
       if (confirmar) {
         this.apagaItemLista(index);
       }
+    }
+  }
+
+  public setLocalStorage() {
+    if(this.listaTarefa) {
+      /* valores checados mudarão para parte de baixo da lista */
+      this.listaTarefa.sort((first, last) => Number(first.checked) - Number(last.checked));
+      /* localStorage (gravar os itens) deve ser atualizado depois do sort*/
+      localStorage.setItem("lista", JSON.stringify(this.listaTarefa));
     }
   }
 }
