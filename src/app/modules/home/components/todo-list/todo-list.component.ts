@@ -21,7 +21,7 @@ export class TodoListComponent implements DoCheck {
   }
 
   public apagaTudoLista() {
-    const confirmar = window.confirm("Deseja Realmente Apagar Tudo?");
+    const confirmar = window.confirm("Deseja realmente apagar tudo?");
     if (confirmar) {
       this.listaTarefa = [];
     }
@@ -34,7 +34,7 @@ export class TodoListComponent implements DoCheck {
   public validarEntradaLista(event: string, index: number) {
     if (!event.length) {
       const confirmar = window.confirm(
-        "O Item da Lista Está Vazio, Deseja Excluir?"
+        "A sua tarefa está vazia, deseja excluir?"
       );
       if (confirmar) {
         this.apagaItemLista(index);
