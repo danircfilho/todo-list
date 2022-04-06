@@ -9,8 +9,6 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 /* Pages */
 import { HomeComponent } from './pages/home/home.component';
 
-
-
 @NgModule({
   declarations: [
     HeaderComponent,
